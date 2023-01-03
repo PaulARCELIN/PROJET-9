@@ -113,6 +113,7 @@ describe("Given I am connected as an employee", () => {
     const billsObject = new Bills ({document, onNavigate, store, localStorage: window.localStorage})
     const getBills = jest.fn(billsObject.getBills)
     expect(getBills()).toBeDefined();
+    
   })
 
   
