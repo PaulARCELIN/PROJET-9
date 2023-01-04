@@ -101,7 +101,7 @@ describe("Given I am connected as an employee", () => {
     })
 })
 
-  //////
+  
   // Test de la fonction getBills()
   // Je dois avoir la liste des factures
   test("I shoud have a list of bills", async () => {
@@ -112,8 +112,8 @@ describe("Given I am connected as an employee", () => {
     const store = mockStore 
     const billsObject = new Bills ({document, onNavigate, store, localStorage: window.localStorage})
     const getBills = jest.fn(billsObject.getBills)
-    expect(getBills()).toBeDefined();
     
+    expect(getBills()).toBeDefined();
   })
 
   

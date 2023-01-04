@@ -19,10 +19,10 @@ describe("Given I am connected as an employee", () => {
   beforeEach(() => {
     document.body.innerHTML = ''
   })
-
   afterEach(() => {
     jest.clearAllMocks()
   })
+
   // Quand je suis sur la page NewBill
   describe("When I am on NewBill Page", () => {
     //L'icone "mail" doit être en surbrillance
@@ -85,7 +85,6 @@ describe("Given I am connected as an employee", () => {
           type: 'Employee'
         }))
 
-
         const store = mockStore
 
         const newBillObject = new NewBill ({document, onNavigate, store, localStorage: window.localStorage}) 
@@ -99,11 +98,9 @@ describe("Given I am connected as an employee", () => {
           name: "fichier-test.jpg",
           type: "image/jpeg"
         }
-
         
         const fileTest = new File ([""], fileValidData.name, { type: fileValidData.type })
         fireEvent.change(fileInput, {target: {files: [fileTest]} })
-
 
         expect(handleChangeFile).toBeTruthy()
         expect(handleChangeFile).toHaveBeenCalled()
@@ -112,7 +109,6 @@ describe("Given I am connected as an employee", () => {
       })
 
       //La fonction "createBill" doit être appelée 
-      ////////////
       it("should call createBill function", () => {
         document.body.innerHTML = NewBillUI()
         Object.defineProperty(window, 'localStorage', { value: localStorageMock })
@@ -140,7 +136,6 @@ describe("Given I am connected as an employee", () => {
         expect(handleChangeFile).toHaveBeenCalled()
       })
     })
-
 
 
     // Test de la fonction handleSubmit
