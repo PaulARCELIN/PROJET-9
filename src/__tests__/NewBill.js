@@ -260,7 +260,7 @@ describe("Given I am connected as an employee", () => {
 })
 
 // Test de l'erreur 404
-describe("When an error 404 occurs on API", () => {
+describe("When I submit the form and an error 404 occurs", () => {
   beforeEach(() => {
     jest.spyOn(mockStore, "bills")
     // On appel la page "NewBillUI"
@@ -278,8 +278,8 @@ describe("When an error 404 occurs on API", () => {
   })
 
 
-  test("fetches bills from an API and fails with 404 message error", async () => {
-
+  test("should have a 404 message error", async () => {
+    // On mock une erreur 404 sur l'appel de l'API
     mockStore.bills.mockImplementation(() => {
       return {
         list : () =>  {
@@ -288,6 +288,8 @@ describe("When an error 404 occurs on API", () => {
       }})
     window.onNavigate(ROUTES_PATH.Bills)
     await new Promise(process.nextTick);
+
+    // On vérifie que le message "erreur 404" apparait bien à l'écran 
     const message = await screen.getByText(/Erreur 404/)
     expect(message).toBeTruthy()
   })

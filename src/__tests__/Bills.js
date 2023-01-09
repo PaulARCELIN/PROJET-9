@@ -89,7 +89,7 @@ describe("Given I am connected as an employee", () => {
       })
     })
 
-    // Test du bouton NewBill
+  // Test du bouton NewBill
     //Quand je clique sur la bouton NewBill
     describe("When I click on NewBill button", () => {
       //Je suis redirigé vers la page NewBill
@@ -122,7 +122,7 @@ describe("Given I am connected as an employee", () => {
     })
 })
 
-  
+
   // Test de la fonction getBills()
   // Je dois avoir la liste des factures
   test("I shoud have a list of bills", async () => {
