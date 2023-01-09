@@ -259,3 +259,38 @@ describe("Given I am connected as an employee", () => {
   })
 })
 
+// Test de l'erreur 404
+describe("When an error 404 occurs on API", () => {
+  beforeEach(() => {
+    jest.spyOn(mockStore, "bills")
+    // On appel la page "NewBillUI"
+    document.body.innerHTML = NewBillUI()
+        
+    // On défini l'utilisateur "employé"
+    Object.defineProperty(window, 'localStorage', { value: localStorageMock })
+    window.localStorage.setItem('user', JSON.stringify({
+      type: 'Employee'
+    }))
+    const root = document.createElement("div")
+    root.setAttribute("id", "root")
+    document.body.appendChild(root)
+    router()
+  })
+
+
+  test("fetches bills from an API and fails with 404 message error", async () => {
+
+    mockStore.bills.mockImplementation(() => {
+      return {
+        list : () =>  {
+          return Promise.reject(new Error("Erreur 404"))
+        }
+      }})
+    window.onNavigate(ROUTES_PATH.Bills)
+    await new Promise(process.nextTick);
+    const message = await screen.getByText(/Erreur 404/)
+    expect(message).toBeTruthy()
+  })
+})
+
+  
